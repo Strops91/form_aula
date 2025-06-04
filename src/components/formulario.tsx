@@ -14,7 +14,21 @@ export default function Formulario() {
       return;
     }
 
-    setMensagem(`Nome: ${nome}, CPF: ${cpf}`);
+    // Criar objeto com os dados do usuário
+    const usuario = {
+      nome,
+      cpf,
+      dataCadastro: new Date().toISOString()
+    };
+
+    // Converter para JSON e salvar no localStorage
+    localStorage.setItem('usuarioData', JSON.stringify(usuario));
+    
+    setMensagem(`Dados salvos com sucesso! Nome: ${nome}, CPF: ${cpf}`);
+    
+    // Limpar os campos após o envio (opcional)
+    setNome('');
+    setCpf('');
   };
 
   const handleNomeChange = (e: ChangeEvent<HTMLInputElement>) => {
